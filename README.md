@@ -71,3 +71,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+nest g mo aerolinea
+nest g cl aerolinea/aerolinea.entity --no-spec
+nest g mo aeropuerto
+nest g cl aeropuerto/aeropuerto.entity --no-spec
