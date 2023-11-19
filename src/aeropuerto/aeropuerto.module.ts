@@ -1,4 +1,13 @@
-import { Module } from '@nestjs/common';
+// aeropuerto.module.ts
 
-@Module({})
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AeropuertoService } from './aeropuerto.service';
+import { AeropuertoEntity } from './aeropuerto.entity';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([AeropuertoEntity])],
+  providers: [AeropuertoService],
+  exports: [AeropuertoService],
+})
 export class AeropuertoModule {}

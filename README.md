@@ -75,5 +75,11 @@ Nest is [MIT licensed](LICENSE).
 
 nest g mo aerolinea
 nest g cl aerolinea/aerolinea.entity --no-spec
+nest g s aerolinea
 nest g mo aeropuerto
 nest g cl aeropuerto/aeropuerto.entity --no-spec
+nest g s aeropuerto
+nest g mo asociacion
+nest g s asociacion
+
+npm run test:watch
