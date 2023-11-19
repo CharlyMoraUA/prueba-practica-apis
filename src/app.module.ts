@@ -23,7 +23,8 @@ import { AsociacionModule } from './asociacion/asociacion.module';
     keepConnectionAlive: true,
   }),
   AerolineaModule, 
-  AeropuertoModule, AsociacionModule
+  AeropuertoModule, 
+  AsociacionModule
 ],
   controllers: [AppController],
   providers: [AppService],

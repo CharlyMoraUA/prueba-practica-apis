@@ -45,6 +45,8 @@ export class AerolineaService {
   }
 
   private isFechaFundacionValid(fecha: Date): boolean {
-    return fecha < new Date();
+    const newdate = new Date(fecha);
+    const isvalid = newdate < new Date();
+    return isvalid;
   }
 }

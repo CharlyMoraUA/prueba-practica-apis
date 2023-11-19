@@ -1,8 +1,10 @@
-import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, HttpCode, Post, Body, Put, Delete, UseInterceptors } from '@nestjs/common';
 import { AerolineaService } from './aerolinea.service';
 import { AerolineaEntity } from './aerolinea.entity';
+import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors/business-errors.interceptor';
 
 @Controller('airlines')
+@UseInterceptors(BusinessErrorsInterceptor)
 export class AerolineaController {
   constructor(private readonly aerolineaService: AerolineaService) {}
 
@@ -27,6 +29,7 @@ export class AerolineaController {
   }
 
   @Delete(':id')
+  @HttpCode(204)
   async delete(@Param('id') id: number): Promise<void> {
     return this.aerolineaService.delete(id);
   }

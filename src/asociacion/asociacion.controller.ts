@@ -1,9 +1,11 @@
-import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete, UseInterceptors,HttpCode } from '@nestjs/common';
 import { AsociacionService } from './asociacion.service';
 import { AerolineaEntity } from 'src/aerolinea/aerolinea.entity';
 import { AeropuertoEntity } from 'src/aeropuerto/aeropuerto.entity';
+import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors/business-errors.interceptor';
 
 @Controller('airlines/:aerolineaId/airports')
+@UseInterceptors(BusinessErrorsInterceptor)
 export class AsociacionController {
   constructor(private readonly asociacionService: AsociacionService) {}
 
@@ -37,6 +39,7 @@ export class AsociacionController {
   }
 
   @Delete(':aeropuertoId')
+  @HttpCode(204)
   async deleteAirportFromAirline(
     @Param('aerolineaId') aerolineaId: number,
     @Param('aeropuertoId') aeropuertoId: number,
