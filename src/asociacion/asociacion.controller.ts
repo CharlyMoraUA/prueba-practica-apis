@@ -33,9 +33,9 @@ export class AsociacionController {
   @Put()
   async updateAirportsFromAirline(
     @Param('aerolineaId') aerolineaId: number,
-    @Body() nuevosAeropuertos: AeropuertoEntity[],
+    @Body() nuevosAeropuertosIds: number[],
   ): Promise<void> {
-    return this.asociacionService.updateAirportsFromAirline(aerolineaId, nuevosAeropuertos);
+    return this.asociacionService.updateAirportsFromAirline(aerolineaId, nuevosAeropuertosIds);
   }
 
   @Delete(':aeropuertoId')

@@ -55,12 +55,35 @@ export class AsociacionService {
     return aeropuerto;
   }
 
-  async updateAirportsFromAirline(aerolineaId: number, nuevosAeropuertos: AeropuertoEntity[]): Promise<void> {
+  // async updateAirportsFromAirline(aerolineaId: number, nuevosAeropuertos: AeropuertoEntity[]): Promise<void> {
+  //   let id = aerolineaId
+  //   const aerolinea = await this.aerolineaRepository.findOne({where:{id}, relations: ['aeropuertos']});
+
+  //   if (!aerolinea) {
+  //     throw new NotFoundException('Aerolínea no encontrada');
+  //   }
+
+  //   aerolinea.aeropuertos = nuevosAeropuertos;
+  //   await this.aerolineaRepository.save(aerolinea);
+  // }
+
+  async updateAirportsFromAirline(aerolineaId: number, nuevosAeropuertosIds: number[]): Promise<void> {
     let id = aerolineaId
     const aerolinea = await this.aerolineaRepository.findOne({where:{id}, relations: ['aeropuertos']});
 
     if (!aerolinea) {
       throw new NotFoundException('Aerolínea no encontrada');
+    }
+
+    let nuevosAeropuertos: AeropuertoEntity[]=[]
+    for (let index = 0; index < nuevosAeropuertosIds.length; index++) {
+      const id = nuevosAeropuertosIds[index];
+      
+      const aeropuerto = await this.aeropuertoRepository.findOne({where:{id}});
+      if (!aeropuerto) {
+        throw new NotFoundException(`Aeropuerto con ID ${id} no encontrado`);
+      }
+      nuevosAeropuertos.push(aeropuerto);
     }
 
     aerolinea.aeropuertos = nuevosAeropuertos;
